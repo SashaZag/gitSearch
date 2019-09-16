@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+    <form action="apiRequest.php" method="get">
+        <select name="field" id="field">
+            <option value="" disabled selected>Field</option>
+            <option value="size">Size</option>
+            <option value="forks">Forks</option>
+            <option value="stars">Stars</option>
+            <option value="followers">Followers</option>
+        </select>
+        <select name="operator" id="operator">
+            <option value="" disabled selected>Operator</option>
+            <option value="">Equal</option>
+            <option value=">">Greater</option>
+            <option value="<">Less</option>
+        </select>
+        <input type="text" name="value" placeholder="Value" id="value">
+        <input type="button" value="Add Rule" id="add">
+        <input type="button" value="Clear" id="clear">
+        <input type="button" value="Delete" id="delete">
+        <input type="hidden" name="values" value="" id="values">
+        <input type="submit" value="Submit">
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        var rules = [];
+        
+	    $('#add').click(function(){
+            var rule = document.getElementById('field').value +":"+document.getElementById('operator').value + document.getElementById('value').value;
+	        rules.push(rule);
+            // alert(rules);
+			document.getElementById('values').value = rules;
+	    });
+        $('#clear').click(function(){
+            rules = [];
+            // alert(rules);
+        });
+        $('#delete').click(function(){
+            rules.pop;
+        });
+
+
+	});
+
+    </script>
+
+</body>
+</html>
